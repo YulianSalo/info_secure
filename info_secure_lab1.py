@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
-
-f = open("SZ_71", "r")
+#71 option
+f = open("VT00", "r")
 
 if f.mode == "r":
 	content = f.read()
@@ -22,10 +22,14 @@ if f.mode == "r":
 	for x in count: 
 		list_count += 1
 
-	print(list_count) 
+	print(list_count)
+
+	alphabet = [""]
 
 
-plt.bar(range(len(count)), list(count.values()), align='center')
+
+
+plt.bar(range(len(count)), sorted(list(count.values()), reverse = True), align='center')
 plt.xticks(range(len(count)), list(count.keys()))
 
 plt.show()
