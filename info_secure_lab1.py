@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 f = open("SZ_71", "r")
 
 if f.mode == "r":
@@ -5,9 +7,27 @@ if f.mode == "r":
 	print (content)
 	print ("text length: ", len(content))
 
+	#count alphabet
+
 	count = {}
 
 	for character in content:
 		count.setdefault(character, 0)
 		count[character] = count[character] +1
 	print(count)
+
+	#count key-values
+	list_count = 0
+
+	for x in count: 
+		list_count += 1
+
+	print(list_count) 
+
+
+plt.bar(range(len(count)), list(count.values()), align='center')
+plt.xticks(range(len(count)), list(count.keys()))
+
+plt.show()
+
+
