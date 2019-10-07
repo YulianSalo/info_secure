@@ -35,7 +35,10 @@ sorted_letters = list([values[1] for values in sorted_count])
 
 sorted_keys = list([keys[0] for keys in sorted_count])
 
-bigram_letters = ''.join(sorted_letters[:10])
+prep_letters = sorted_letters[1:11]
+
+
+bigram_letters = ''.join(prep_letters)
 
 
 #bigram = [x*x for x in bigram_letters]
@@ -43,24 +46,37 @@ bigram_letters = ''.join(sorted_letters[:10])
 t_bigram = list(itertools.permutations(bigram_letters, 2))
 #bigram = list(itertools.chain(*t_bigram))
 
-print(t_bigram)
 
-#for i in range(pow(len(bigram_letters)),2):
-	#bigram.append()
+new_bigram = []
+
+for i in range(len(t_bigram)):
+	new_bigram.append(''.join(t_bigram[i]))
+
+print(new_bigram)
+
+bigram_final = []
+bigram_final_count = []
 
 
-bigram_keys = sorted_keys[:10]
+for i in range(len(new_bigram)):
+	if new_bigram[i] in content:
+		bigram_final.append(new_bigram[i])
+		bigram_final_count.append(content.count(new_bigram[i]))
 
-print(bigram_letters)
+print(len(new_bigram), len(bigram_final), '\n',bigram_final_count)
 
+bigram_dict = dict(zip(bigram_final, bigram_final_count))
+print(bigram_dict)
 
-#sorted_keys = list()
+bigram_sorted_dict = sorted(((value, key) for (key,value) in bigram_dict.items()), reverse = True)
+print(bigram_sorted_dict)
+
 
 plt.bar(sorted_letters, sorted_keys, align='center')
 plt.xticks(range(len(count)), sorted_letters)
 
-plt.show()
+#plt.show()
 
 plt.bar(range(len(count)), list(count.values()), align='center')
 plt.xticks(range(len(count)), list(sorted(count.keys())))
-plt.show()
+#plt.show()
